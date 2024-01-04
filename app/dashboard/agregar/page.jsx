@@ -22,6 +22,12 @@ export default function AgregarPage() {
       setCont(false);
     }
   };
+  const stopCamera = () => {
+    const stream = videoRef.current.srcObject;
+    const tracks = stream.getTracks();
+    tracks.forEach((track) => track.stop());
+    videoRef.current.srcObject = null;
+  };
 
   const capturePhoto = () => {
     const canvas = document.createElement("canvas");
@@ -30,8 +36,8 @@ export default function AgregarPage() {
     canvas.getContext("2d").drawImage(videoRef.current, 0, 0);
     const imageUrl = canvas.toDataURL("image/jpeg");
     setImage(imageUrl);
-    stream.getVideoTracks()[0].stop();
     setCont(false);
+    stopCamera();
   };
 
   return (
