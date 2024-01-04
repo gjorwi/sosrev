@@ -20,7 +20,7 @@ export default function AgregarPage() {
       videoRef.current.srcObject = stream;
     } catch (error) {
       console.error("Error starting camera:", error);
-      cont=false
+      setCont(false);
     }
   };
 
