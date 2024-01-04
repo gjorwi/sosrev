@@ -6,7 +6,6 @@ import { VscDeviceCamera } from "react-icons/vsc";
 export default function AgregarPage() {
   const videoRef = useRef(null);
 
-  var cont=false
   const [image, setImage] = useState(null);
   const [cont, setCont] = useState(false);
 
