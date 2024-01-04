@@ -3,8 +3,12 @@ const nextConfig = {}
 
 module.exports = nextConfig
 
-const withHTTPS = require('next-https');
+// const withHTTPS = require('next-https');
 
-module.exports = withHTTPS({
-  // Otras opciones de configuración de Next.js
-});
+// module.exports = withHTTPS({
+//   // Otras opciones de configuración de Next.js
+//   https: {
+//     key: fs.readFileSync('/ruta/a/tu/certificado/server.key'),
+//     cert: fs.readFileSync('/ruta/a/tu/certificado/server.crt'),
+//   },
+// });
