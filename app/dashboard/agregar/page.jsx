@@ -7,12 +7,14 @@ export default function AgregarPage() {
   const videoRef = useRef(null);
 
   var cont=false
-
   const [image, setImage] = useState(null);
+  const [cont, setCont] = useState(false);
+
 
   const startCamera = async () => {
     try {
       setImage(null);
+      setCont(true);
       const mediaDevices = navigator.mediaDevices;
       const stream = await mediaDevices.getUserMedia({ video: true });
       videoRef.current.srcObject = stream;
@@ -29,12 +31,12 @@ export default function AgregarPage() {
     canvas.getContext("2d").drawImage(videoRef.current, 0, 0);
     const imageUrl = canvas.toDataURL("image/jpeg");
     setImage(imageUrl);
-    cont=false
+    setCont(false);
   };
 
   return (
     <div className='flex justify-center flex-col items-center gap-y-4 mt-6'>
-      {!image &&
+      {cont &&
         <video onClick={capturePhoto}
           ref={videoRef}
           autoPlay
