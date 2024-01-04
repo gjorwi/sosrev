@@ -34,14 +34,14 @@ export default function AgregarPage() {
 
   return (
     <div className='flex justify-center flex-col items-center gap-y-4 mt-6'>
-      {cont &&
+      
         <video onClick={capturePhoto}
           ref={videoRef}
           autoPlay
           className="w-52 h-40"
           style={{ border: "1px solid #888" }}
         />
-      }
+    
       {image ?
         <img src={image} alt="Imagen" className='flex cursor-pointer h-40 w-52 border border-slate-500 bg-slate-50 justify-center items-center text-4xl text-slate-300' />
         :<button name='capture' onClick={startCamera} className='flex cursor-pointer h-40 w-52 border border-slate-500 bg-slate-50 justify-center items-center text-4xl text-slate-300'>
