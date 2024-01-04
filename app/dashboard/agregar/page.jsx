@@ -1,13 +1,13 @@
 'use client'
 import Image from 'next/image'
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import { VscDeviceCamera } from "react-icons/vsc";
 
 export default function AgregarPage() {
   const videoRef = useRef(null);
 
   var cont=false
-  
+
   const [image, setImage] = useState(null);
 
   const startCamera = async () => {
