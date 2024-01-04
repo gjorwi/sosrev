@@ -56,7 +56,9 @@ export default function AgregarPage() {
         </button>
       }
       {image!=null &&
-        <img src={image} alt="Imagen" onClick={startCamera} className='flex cursor-pointer h-40 w-52 border border-slate-500 bg-slate-50 justify-center items-center text-4xl text-slate-300' />
+        <div className='h-40 w-52 flex justify-center overflow-hidden'>
+          <img src={image} alt="Imagen" onClick={startCamera} className='flex cursor-pointer h-full border border-slate-500 bg-slate-50 justify-center items-center text-4xl text-slate-300' />
+        </div>
       
       }
       {/* {
