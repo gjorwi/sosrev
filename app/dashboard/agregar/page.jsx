@@ -42,7 +42,7 @@ export default function AgregarPage() {
           style={{ border: "1px solid #888" }}
         />
       }
-      {image ?
+      {image!=null ?
         <img src={image} alt="Imagen" onClick={startCamera} className='flex cursor-pointer h-40 w-52 border border-slate-500 bg-slate-50 justify-center items-center text-4xl text-slate-300' />
         :<button name='capture' onClick={startCamera} className='flex cursor-pointer h-40 w-52 border border-slate-500 bg-slate-50 justify-center items-center text-4xl text-slate-300'>
           <VscDeviceCamera />
