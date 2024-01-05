@@ -8,18 +8,37 @@ export default function AgregarPage() {
 
   const [image, setImage] = useState(null);
   const [cont, setCont] = useState(false);
+  const [cameraDevices, setCameraDevices] = useState([]);
+  const [selectedCamera, setSelectedCamera] = useState(null);
 
+  useEffect(() => {
+    const getCameraDevices = async () => {
+      try {
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const cameras = devices.filter(
+          (device) => device.kind === "videoinput"
+        );
+        setCameraDevices(cameras);
+        setSelectedCamera(cameras[0]?.deviceId);
+      } catch (error) {
+        console.error("Error getting camera devices:", error);
+      }
+    };
+
+    getCameraDevices();
+  }, []);
 
   const startCamera = async () => {
     try {
-      setImage(null);
-      setCont(true);
       const mediaDevices = navigator.mediaDevices;
-      const stream = await mediaDevices.getUserMedia({ video: true });
+      const stream = await mediaDevices.getUserMedia({
+        video: {
+          deviceId: selectedCamera ? { exact: selectedCamera } : undefined,
+        },
+      });
       videoRef.current.srcObject = stream;
     } catch (error) {
       console.error("Error starting camera:", error);
-      setCont(false);
     }
   };
   const stopCamera = () => {
@@ -39,9 +58,23 @@ export default function AgregarPage() {
     setCont(false);
     stopCamera();
   };
+  const handleCameraChange = (event) => {
+    setSelectedCamera(event.target.value);
+  };
 
   return (
     <div className='flex justify-center flex-col items-center gap-y-4 mt-6'>
+      <select
+        value={selectedCamera}
+        onChange={handleCameraChange}
+        className="border border-slate-500 bg-slate-50 rounded p-1"
+      >
+        {cameraDevices.map((camera) => (
+          <option key={camera.deviceId} value={camera.deviceId}>
+            {camera.label}
+          </option>
+        ))}
+      </select>
       {cont &&
         <video onClick={capturePhoto}
           ref={videoRef}
