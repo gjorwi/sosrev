@@ -30,6 +30,8 @@ export default function AgregarPage() {
 
   const startCamera = async () => {
     try {
+      setImage(null);
+      setCont(true);
       const mediaDevices = navigator.mediaDevices;
       const stream = await mediaDevices.getUserMedia({
         video: {
